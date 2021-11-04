@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:padding="8dp"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:text="Settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/settings_back"
+        android:layout_width="76dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back"
+        tools:srcCompat="@drawable/ic_arrow_back" />
+
+    <LinearLayout
+        android:id="@+id/resultPanelSettingsContainer"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="48sp"
+        android:layout_width="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSettings"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/menuPoint1View"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/resultPanelSettingsText"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/resultPanelSettingsDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/resultPanelSettingsEnum"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            tools:layout_editor_absoluteX="0dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/formatResultContainer"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="24sp"
+        android:layout_width="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultPanelSettingsContainer"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/formatResultViewName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/formatResultViewName"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/formatResultViewDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/formatResultViewDescription"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            tools:layout_editor_absoluteX="0dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/vibrationForceContainer"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="24sp"
+        android:layout_width="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/formatResultContainer"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/vibrationForceViewName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/vibrationForceViewName"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/vibrationForceViewDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/vibrationForceViewDescription"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            tools:layout_editor_absoluteX="0dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

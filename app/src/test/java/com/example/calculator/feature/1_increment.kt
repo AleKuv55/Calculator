@@ -1,4 +1,6 @@
 package com.example.calculator.feature
 
 
-class A() {}
+fun main() {
+    println("jfijfi")
+}
