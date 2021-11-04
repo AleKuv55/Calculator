@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:rotationX="-360">
+
+
+    <EditText
+        android:id="@+id/main_input"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@id/main_result"
+        app:layout_constraintTop_toTopOf="parent"></EditText>
+
+    <ImageView
+        android:id="@+id/settings"
+        android:layout_width="49dp"
+        android:layout_height="44dp"
+        android:layout_gravity=""
+        android:layout_marginEnd="8dp"
+
+        android:layout_marginTop="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_settings" />
+
+    <ImageView
+        android:id="@+id/history"
+        android:layout_width="49dp"
+        android:layout_height="44dp"
+        android:layout_gravity=""
+        android:layout_marginEnd="72dp"
+
+        android:layout_marginTop="8dp"
+        android:foregroundTint="#000000"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_history" />
+
+    <LinearLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/main_back"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_arrow_back" />
+
+            <TextView
+                android:id="@+id/main_clear"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="C" />
+
+            <TextView
+                android:id="@+id/main_degree"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="^" />
+
+            <TextView
+                android:id="@+id/main_division"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="/" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/main_seven"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="7" />
+
+            <TextView
+                android:id="@+id/main_eight"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="8" />
+
+            <TextView
+                android:id="@+id/main_nine"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="9" />
+
+            <TextView
+                android:id="@+id/main_multiply"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="*" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/main_four"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="4" />
+
+            <TextView
+                android:id="@+id/main_five"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="5" />
+
+            <TextView
+                android:id="@+id/main_six"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="6" />
+
+            <TextView
+                android:id="@+id/main_minus"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="-" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/main_one"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="1" />
+
+            <TextView
+                android:id="@+id/main_two"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="2" />
+
+            <TextView
+                android:id="@+id/main_three"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="3" />
+
+            <TextView
+                android:id="@+id/main_plus"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="+" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/main_dot"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="." />
+
+            <TextView
+                android:id="@+id/main_zero"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/main_sqrt"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="√" />
+
+            <TextView
+                android:id="@+id/main_equals"
+                style="@style/MainButton"
+                android:layout_weight="1"
+                android:text="=" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/main_result"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/main_container"
+        tools:text="12345" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
