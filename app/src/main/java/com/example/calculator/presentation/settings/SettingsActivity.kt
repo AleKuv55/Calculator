@@ -15,7 +15,7 @@ import com.example.calculator.domain.entity.FormatResultTypeEnum
 import com.example.calculator.domain.entity.ResultPanelType
 
 class SettingsActivity : BaseActivity() {
-    private val _viewModel by viewModels<SettingsViewModel>()
+    private val viewModel by viewModels<SettingsViewModel>()
     {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -23,45 +23,45 @@ class SettingsActivity : BaseActivity() {
             }
         }
     }
-    private val _viewBinding by viewBinding(SettingsActivityBinding::bind)
+    private val viewBinding by viewBinding(SettingsActivityBinding::bind)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
-        _viewBinding.settingsBack.setOnClickListener {
+        viewBinding.settingsBack.setOnClickListener {
             finish()
         }
-        _viewBinding.resultPanelSettingsContainer.setOnClickListener {
-            _viewModel.onResultPanelTypeClicked()
+        viewBinding.resultPanelSettingsContainer.setOnClickListener {
+            viewModel.onResultPanelTypeClicked()
         }
-        _viewModel.resultPanelState.observe(this) { state ->
-            _viewBinding.resultPanelSettingsDescription.text =
+        viewModel.resultPanelState.observe(this) { state ->
+            viewBinding.resultPanelSettingsDescription.text =
                 resources.getStringArray(R.array.result_panel_types)[state.ordinal]
         }
-        _viewModel.openResultPanelAction.observe(this) { type ->
+        viewModel.openResultPanelAction.observe(this) { type ->
             showDialogResultPanel(type)
         }
 
-        _viewBinding.formatResultContainer.setOnClickListener {
-            _viewModel.onFormatResultPanelTypeClicked()
+        viewBinding.formatResultContainer.setOnClickListener {
+            viewModel.onFormatResultPanelTypeClicked()
         }
-        _viewModel.openFormatResultAction.observe(this) { type ->
+        viewModel.openFormatResultAction.observe(this) { type ->
             showDialogFormatResultPanel(type)
         }
-        _viewModel.formatResultState.observe(this) { state ->
-            _viewBinding.formatResultViewDescription.text =
+        viewModel.formatResultState.observe(this) { state ->
+            viewBinding.formatResultViewDescription.text =
                 resources.getStringArray(R.array.format_result_types)[state.ordinal]
         }
 
-        _viewBinding.vibrationForceContainer.setOnClickListener {
-            _viewModel.onForceVibrationPanelTypeClicked()
+        viewBinding.vibrationForceContainer.setOnClickListener {
+            viewModel.onForceVibrationPanelTypeClicked()
         }
-        _viewModel.openForceVibrationAction.observe(this) { type ->
+        viewModel.openForceVibrationAction.observe(this) { type ->
             showDialogForceVibrationPanel(type)
         }
-        _viewModel.forceVibrationState.observe(this) { state ->
-            _viewBinding.vibrationForceViewDescription.text =
+        viewModel.forceVibrationState.observe(this) { state ->
+            viewBinding.vibrationForceViewDescription.text =
                 resources.getStringArray(R.array.vibration_force_types)[state.ordinal]
         }
     }
@@ -70,10 +70,10 @@ class SettingsActivity : BaseActivity() {
         var result: Int? = null
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.settings_result_panel_title))
-            .setPositiveButton("Ok") { dialog, id ->
-                result?.let { _viewModel.onResultPanelTypeChanged(ResultPanelType.values()[it]) }
+            .setPositiveButton(getString(R.string.ok_positive_button)) { dialog, id ->
+                result?.let { viewModel.onResultPanelTypeChanged(ResultPanelType.values()[it]) }
             }
-            .setNegativeButton("No") { dialog, id -> }
+            .setNegativeButton(getString(R.string.no_negative_button)) { dialog, id -> }
             .setSingleChoiceItems(R.array.result_panel_types, type.ordinal) { dialog, id ->
                 result = id
             }
@@ -84,10 +84,10 @@ class SettingsActivity : BaseActivity() {
         var result: Int? = null
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.settings_result_panel_title))
-            .setPositiveButton("Ok") { dialog, id ->
-                result?.let { _viewModel.onFormatResultChanged(FormatResultTypeEnum.values()[it]) }
+            .setPositiveButton(getString(R.string.ok_positive_button)) { dialog, id ->
+                result?.let { viewModel.onFormatResultChanged(FormatResultTypeEnum.values()[it]) }
             }
-            .setNegativeButton("No") { dialog, id -> }
+            .setNegativeButton(getString(R.string.no_negative_button)) { dialog, id -> }
             .setSingleChoiceItems(R.array.format_result_types, type.ordinal) { dialog, id ->
                 result = id
             }
@@ -98,10 +98,10 @@ class SettingsActivity : BaseActivity() {
         var result: Int? = null
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.settings_result_panel_title))
-            .setPositiveButton("Ok") { dialog, id ->
-                result?.let { _viewModel.onForceVibrationChanged(ForceVibrationTypeEnum.values()[it]) }
+            .setPositiveButton(getString(R.string.ok_positive_button)) { dialog, id ->
+                result?.let { viewModel.onForceVibrationChanged(ForceVibrationTypeEnum.values()[it]) }
             }
-            .setNegativeButton("No") { dialog, id -> }
+            .setNegativeButton(getString(R.string.no_negative_button)) { dialog, id -> }
             .setSingleChoiceItems(R.array.vibration_force_types, type.ordinal) { dialog, id ->
                 result = id
             }

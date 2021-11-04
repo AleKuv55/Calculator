@@ -15,40 +15,39 @@ import com.example.calculator.presentation.common.BaseActivity
 public class HistoryActivity : BaseActivity() {
 
 
-    private val _viewModel by viewModels<HistoryViewModel>() {
+    private val viewModel by viewModels<HistoryViewModel>() {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 return HistoryViewModel(HistoryRepositoryProvider.get(this@HistoryActivity)) as T
             }
         }
     }
-    private val _viewBinding by viewBinding(HistoryActivityBinding::bind)
+    private val viewBinding by viewBinding(HistoryActivityBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.history_activity)
-        _viewBinding.settingsBack.setOnClickListener {
+        viewBinding.settingsBack.setOnClickListener {
             finish()
         }
 
-        val historyAdapter = HistoryAdapter(_viewModel::onItemsClicked)
+        val historyAdapter = HistoryAdapter(viewModel::onItemsClicked)
 
-        with(_viewBinding.list) {
+        with(viewBinding.list) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = historyAdapter
         }
 
-        _viewModel.historyItemsState.observe(this) { state ->
+        viewModel.historyItemsState.observe(this) { state ->
             historyAdapter.setData(state)
         }
 
-        _viewModel.closeWithResult.observe(this) { state ->
+        viewModel.closeWithResult.observe(this) { state ->
             setResult(RESULT_OK, Intent().putExtra(HISTORY_ACTIVITY_KEY, state))
             finish()
         }
 
     }
-
 
     companion object {
         const val HISTORY_ACTIVITY_KEY = "HISTORY_ACTIVITY_KEY"

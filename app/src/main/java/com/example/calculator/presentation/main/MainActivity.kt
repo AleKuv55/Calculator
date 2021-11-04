@@ -14,15 +14,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.calculator.R
-import com.example.calculator.presentation.common.BaseActivity
 import com.example.calculator.databinding.MainActivityBinding
 import com.example.calculator.di.HistoryRepositoryProvider
 import com.example.calculator.di.SettingsDaoProvider
-import com.example.calculator.domain.entity.ForceVibrationTypeEnum
 import com.example.calculator.domain.entity.ForceVibrationTypeEnum.*
-import com.example.calculator.domain.entity.ResultPanelType.LEFT
-import com.example.calculator.domain.entity.ResultPanelType.RIGHT
-import com.example.calculator.domain.entity.ResultPanelType.HIDE
+import com.example.calculator.domain.entity.ResultPanelType.*
+import com.example.calculator.presentation.common.BaseActivity
 import com.example.calculator.presentation.history.Result
 import com.example.calculator.presentation.main.Operators.*
 import com.example.calculator.presentation.settings.SettingsActivity
@@ -40,11 +37,9 @@ class MainActivity : BaseActivity() {
             }
         }
     }
-    private val _viewBinding by viewBinding(MainActivityBinding::bind)
+    private val viewBinding by viewBinding(MainActivityBinding::bind)
 
-    //    private val getResult: ActivityResultLauncher<Unit> =
-    private val resultLauncher = registerForActivityResult(Result())
-    { item ->
+    private val resultLauncher = registerForActivityResult(Result()) { item ->
         viewModel.onHistoryResult(item)
     }
 
@@ -53,27 +48,27 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-        _viewBinding.settings.setOnClickListener() { openSettings() }
-        _viewBinding.history.setOnClickListener() { openHistory() }
+        viewBinding.settings.setOnClickListener() { openSettings() }
+        viewBinding.history.setOnClickListener() { openHistory() }
 
-        _viewBinding.mainInput.apply { showSoftInputOnFocus = false }
-        _viewBinding.mainEquals.setOnClickListener {}
+        viewBinding.mainInput.apply { showSoftInputOnFocus = false }
+        viewBinding.mainEquals.setOnClickListener {}
 
         listOf(
-            _viewBinding.mainZero,
-            _viewBinding.mainOne,
-            _viewBinding.mainTwo,
-            _viewBinding.mainThree,
-            _viewBinding.mainFour,
-            _viewBinding.mainFive,
-            _viewBinding.mainSix,
-            _viewBinding.mainSeven,
-            _viewBinding.mainEight,
-            _viewBinding.mainNine,
+            viewBinding.mainZero,
+            viewBinding.mainOne,
+            viewBinding.mainTwo,
+            viewBinding.mainThree,
+            viewBinding.mainFour,
+            viewBinding.mainFive,
+            viewBinding.mainSix,
+            viewBinding.mainSeven,
+            viewBinding.mainEight,
+            viewBinding.mainNine,
         ).forEachIndexed { index, textView ->
             textView.setOnClickListener {
 
-                viewModel.onNumberClick(index, _viewBinding.mainInput.selectionStart)
+                viewModel.onNumberClick(index, viewBinding.mainInput.selectionStart)
                 val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                 if (vibrator.hasVibrator() && forceVibrationValue != VibrationMSTypes.NO.value) { // Vibrator availability checking
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -83,7 +78,6 @@ class MainActivity : BaseActivity() {
                                 VibrationEffect.DEFAULT_AMPLITUDE
                             )
                         ) // New vibrate method for API Level 26 or higher
-                        _viewBinding.mainDot.text = textView.text;
                     } else {
                         vibrator.vibrate(forceVibrationValue) // Vibrate method for below API Level 26
                     }
@@ -91,52 +85,41 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        _viewBinding.mainBack.setOnClickListener { viewModel.onBackButtonClick(_viewBinding.mainInput.selectionStart) }
-        _viewBinding.mainClear.setOnClickListener { viewModel.onClearButtonClick() }
+        viewBinding.mainBack.setOnClickListener { viewModel.onBackButtonClick(viewBinding.mainInput.selectionStart) }
+        viewBinding.mainClear.setOnClickListener { viewModel.onClearButtonClick() }
 
 
-        _viewBinding.mainPlus.setOnClickListener {
-            viewModel.onOperationClick(
-                PLUS,
-                _viewBinding.mainInput.selectionStart
-            )
-        }
-        _viewBinding.mainMinus.setOnClickListener {
-            viewModel.onOperationClick(
-                MINUS,
-                _viewBinding.mainInput.selectionStart
-            )
-        }
-        _viewBinding.mainDivision.setOnClickListener {
-            viewModel.onOperationClick(
-                DIVIDE,
-                _viewBinding.mainInput.selectionStart
-            )
-        }
-        _viewBinding.mainMultiply.setOnClickListener {
-            viewModel.onOperationClick(
-                MULTIPLY,
-                _viewBinding.mainInput.selectionStart
-            )
+        viewBinding.mainPlus.setOnClickListener {
+            viewModel.onOperationClick(PLUS, viewBinding.mainInput.selectionStart)
         }
 
-        _viewBinding.mainEquals.setOnClickListener { viewModel.onEqualsButtonClick() }
-
-        _viewBinding.mainSqrt.setOnClickListener { viewModel.onSqrtButtonClick() }
-        _viewBinding.mainDegree.setOnClickListener {
-            viewModel.onOperationClick(
-                DEGREE,
-                _viewBinding.mainInput.selectionStart
-            )
+        viewBinding.mainMinus.setOnClickListener {
+            viewModel.onOperationClick(MINUS, viewBinding.mainInput.selectionStart)
         }
 
+        viewBinding.mainDivision.setOnClickListener {
+            viewModel.onOperationClick(DIVIDE, viewBinding.mainInput.selectionStart)
+        }
+
+        viewBinding.mainMultiply.setOnClickListener {
+            viewModel.onOperationClick(MULTIPLY, viewBinding.mainInput.selectionStart)
+        }
+
+        viewBinding.mainDegree.setOnClickListener {
+            viewModel.onOperationClick(DEGREE, viewBinding.mainInput.selectionStart)
+        }
+
+        viewBinding.mainEquals.setOnClickListener { viewModel.onEqualsButtonClick() }
+
+        viewBinding.mainSqrt.setOnClickListener { viewModel.onSqrtButtonClick() }
 
         viewModel.expressionState.observe(this) { state ->
-            _viewBinding.mainInput.setText(state.expression)
-            _viewBinding.mainInput.setSelection(state.index)
+            viewBinding.mainInput.setText(state.expression)
+            viewBinding.mainInput.setSelection(state.index)
         }
+
         viewModel.resultState.observe(this) { state ->
-            _viewBinding.mainResult.setText(state)
+            viewBinding.mainResult.setText(state)
         }
 
         viewModel.forceVibrationState.observe(this) { state ->
@@ -148,7 +131,7 @@ class MainActivity : BaseActivity() {
             }
         }
         viewModel.resultPanelState.observe(this) {
-            with(_viewBinding.mainResult) {
+            with(viewBinding.mainResult) {
                 gravity = when (it) {
                     LEFT -> Gravity.START.or(Gravity.CENTER_VERTICAL)
                     RIGHT -> Gravity.END.or(Gravity.CENTER_VERTICAL)
@@ -169,14 +152,8 @@ class MainActivity : BaseActivity() {
     }
 
     private fun openHistory() {
-//        startActivity(Intent(this, HistoryActivity::class.java))
         resultLauncher.launch()
     }
-
-}
-
-enum class VibrationMSTypes(val value: Long) {
-    NO(0), WEAK(250), MODERATE(500), STRONG(1000)
 }
 
 

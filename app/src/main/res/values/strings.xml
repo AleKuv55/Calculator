@@ -7,6 +7,10 @@
     <string name="formatResultViewDescription">Один знак</string>
     <string name="vibrationForceViewName">Сила вибрации</string>
     <string name="vibrationForceViewDescription">Слабая</string>
+    <string name="ok_positive_button">Ok</string>
+    <string name="no_negative_button">No</string>
+    <string name="settings_menu_name">Настройки</string>
+    <string name="history_menu_name">История</string>
 
 
     <string-array name="result_panel_types">

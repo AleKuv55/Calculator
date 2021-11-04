@@ -44,5 +44,5 @@ class HistoryAdapter(private val onItemsClicked: (HistoryItem) -> Unit) :
 class HistoryViewHolder(val binding: HistoryItemBinding) : RecyclerView.ViewHolder(binding.root)
 
 fun LocalDateTime.formatForHistory(): String {
-    return format(DateTimeFormatter.ofPattern("hh:mm:ss dd mm yyyy"))
+    return format(DateTimeFormatter.ofPattern("hh:mm:ss dd MMMM yyyy"))
 }
