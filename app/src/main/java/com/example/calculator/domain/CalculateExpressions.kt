@@ -18,14 +18,12 @@ fun calculateExpressions(exp: String, formatResultType: FormatResultTypeEnum?): 
             formattedExp = formattedExp.dropLast(1)
         }
 
-        formattedExp = sqrtParser(formattedExp)
-
-
+//        formattedExp = sqrtParser(formattedExp)
 
         val solution = DoubleEvaluator().evaluate(formattedExp)
 
         return if (floor(solution) == solution) {
-            solution.toInt().toString()
+            solution.toLong().toString()
         } else {
             val result = when (formatResultType) {
                 FormatResultTypeEnum.MANY -> solution.toString()

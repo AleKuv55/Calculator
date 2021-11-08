@@ -80,15 +80,8 @@ class MainViewModel(
         _resultState.value = result
     }
 
-    fun onDegreeButtonClick() {
-        TODO("Not yet implemented")
-    }
-
     fun onBackButtonClick(index: Int) {
         expression = expression.removeRange(index - 1, index)
-//        expression = expression.substring(0, index) + expression.substring(index+1, expression.length)
-
-
         _expressionState.value = ExpressionState(expression, (index - 1).coerceAtLeast(0))
         _resultState.value = calculateExpressions(expression, _formatResultState.value)
     }
