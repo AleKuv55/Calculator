@@ -12,6 +12,7 @@ import com.example.calculator.domain.entity.FormatResultTypeEnum
 import com.example.calculator.domain.entity.HistoryItem
 import com.example.calculator.domain.entity.ResultPanelType
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class MainViewModel(
     private val settingsDao: SettingsDao,
@@ -62,16 +63,18 @@ class MainViewModel(
     }
 
     fun onOperationClick(operators: Operators, index: Int) {
-        expression = expression.substring(0, index) + operators.symbol + expression.substring(
-            index,
-            expression.length
-        )
-        _expressionState.value = ExpressionState(expression, index + 1)
-        _resultState.value = calculateExpressions(expression, _formatResultState.value)
+            expression =
+                expression.substring(0, index) + operators.symbol + expression.substring(
+                    index,
+                    expression.length
+                )
+            _expressionState.value = ExpressionState(expression, index + 1)
+            _resultState.value = calculateExpressions(expression, _formatResultState.value)
     }
 
     fun onSqrtButtonClick() {
-        expression = expression + "^0.5"
+//        expression = "√" + expression
+        expression += "^0.5"
         val result = calculateExpressions(expression, _formatResultState.value)
         _expressionState.value = ExpressionState(expression, expression.length)
         _resultState.value = result
@@ -127,6 +130,11 @@ class MainViewModel(
             _expressionState.value = ExpressionState(expression, expression.length)
             _resultState.value = item.result
         }
+    }
+
+    fun onDotButtonClick() {
+        expression += "."
+        _expressionState.value = ExpressionState(expression, expression.length)
     }
 
 

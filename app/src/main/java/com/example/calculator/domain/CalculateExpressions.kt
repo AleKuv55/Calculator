@@ -13,29 +13,50 @@ fun calculateExpressions(exp: String, formatResultType: FormatResultTypeEnum?): 
         if (exp.isBlank()) return ""
 
         var formattedExp = exp
-        while (!formattedExp.last().isDigit()) {
+
+        if (!formattedExp.last().isDigit()) {
             formattedExp = formattedExp.dropLast(1)
         }
 
+        formattedExp = sqrtParser(formattedExp)
+
+
+
         val solution = DoubleEvaluator().evaluate(formattedExp)
 
-        val result = when (formatResultType) {
-            FormatResultTypeEnum.MANY -> solution
-            FormatResultTypeEnum.ONE -> String.format("%.1f", solution).toDouble()
-            FormatResultTypeEnum.THREE -> String.format("%.3f", solution).toDouble()
-            null -> solution
-        }
-//        val number:Double = 0.0449999
-//        val number3digits:Double = String.format("%.3f", number).toDouble()
-//        val number2digits:Double = String.format("%.2f", number3digits).toDouble()
-//        val solution:Double = String.format("%.1f", number2digits).toDouble()
-
-        return if (floor(result) == result) {
-            result.toInt().toString()
+        return if (floor(solution) == solution) {
+            solution.toInt().toString()
         } else {
-            result.toString()
+            val result = when (formatResultType) {
+                FormatResultTypeEnum.MANY -> solution.toString()
+                FormatResultTypeEnum.ONE -> String.format("%.1f", solution)
+                FormatResultTypeEnum.THREE -> String.format("%.3f", solution)
+                null -> solution.toString()
+            }
+            if(result.contains(','))
+                return result.replace(',','.')
+            return result
         }
     } catch (exc: Exception) {
-        return "$exc"
+        return "Неправильное выражение"
     }
+}
+
+private fun sqrtParser(exp:String):String
+{
+    if (!exp.contains("√"))
+        return exp
+    var i:Int = 0;
+    var j: Int = 0;
+    var expNew = exp
+    while (i != exp.length ) {
+        if (exp[i].equals("√")) {
+            j = i+1
+            while ( exp[j].code < "9".toInt() && exp[j].code > "0".toInt()) {
+                j++;
+            }
+            expNew = expNew.substring(0, i) + expNew.substring(i+1, j)+ "^0.5" + expNew.substring(j, expNew.length + 4)
+            i++
+    }}
+    return expNew
 }

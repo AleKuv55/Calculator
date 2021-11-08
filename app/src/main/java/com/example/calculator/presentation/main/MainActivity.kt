@@ -2,6 +2,7 @@ package com.example.calculator.presentation.main
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color.red
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -9,6 +10,7 @@ import android.os.Vibrator
 import android.view.Gravity
 import androidx.activity.result.launch
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -23,6 +25,7 @@ import com.example.calculator.presentation.common.BaseActivity
 import com.example.calculator.presentation.history.Result
 import com.example.calculator.presentation.main.Operators.*
 import com.example.calculator.presentation.settings.SettingsActivity
+import java.lang.Exception
 
 
 class MainActivity : BaseActivity() {
@@ -47,6 +50,8 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        try {
+
         setContentView(R.layout.main_activity)
         viewBinding.settings.setOnClickListener() { openSettings() }
         viewBinding.history.setOnClickListener() { openHistory() }
@@ -67,7 +72,6 @@ class MainActivity : BaseActivity() {
             viewBinding.mainNine,
         ).forEachIndexed { index, textView ->
             textView.setOnClickListener {
-
                 viewModel.onNumberClick(index, viewBinding.mainInput.selectionStart)
                 val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                 if (vibrator.hasVibrator() && forceVibrationValue != VibrationMSTypes.NO.value) { // Vibrator availability checking
@@ -109,6 +113,7 @@ class MainActivity : BaseActivity() {
             viewModel.onOperationClick(DEGREE, viewBinding.mainInput.selectionStart)
         }
 
+        viewBinding.mainDot.setOnClickListener { viewModel.onDotButtonClick() }
         viewBinding.mainEquals.setOnClickListener { viewModel.onEqualsButtonClick() }
 
         viewBinding.mainSqrt.setOnClickListener { viewModel.onSqrtButtonClick() }
@@ -119,7 +124,7 @@ class MainActivity : BaseActivity() {
         }
 
         viewModel.resultState.observe(this) { state ->
-            viewBinding.mainResult.setText(state)
+                viewBinding.mainResult.setText(state)
         }
 
         viewModel.forceVibrationState.observe(this) { state ->
@@ -139,6 +144,9 @@ class MainActivity : BaseActivity() {
                 }
                 isVisible = it != HIDE
             }
+        }}
+        catch (exc:Exception){
+            viewBinding.mainResult.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
         }
     }
 

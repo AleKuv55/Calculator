@@ -19,7 +19,9 @@
         <item name="android:gravity">center</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/blackhalf</item>
         <item name="android:background">@drawable/shape_main_button</item>
         <item name="android:clickable">true</item>
     </style>
+
 </resources>

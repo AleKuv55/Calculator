@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:padding="8dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textColor="@color/blackhalf"
+        android:textSize="32sp"
         android:text="@string/settings_menu_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,59 +21,67 @@
 
     <ImageView
         android:id="@+id/settings_back"
-        android:layout_width="76dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="18dp"
         android:background="#FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_arrow_back"
-        tools:srcCompat="@drawable/ic_arrow_back" />
+        tools:srcCompat="@drawable/ic_arrow_back"
+        app:tint="@color/grayred"/>
 
     <LinearLayout
         android:id="@+id/resultPanelSettingsContainer"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="48sp"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48sp"
+        android:background="?attr/selectableItemBackground"
+        android:backgroundTintMode="add"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textSettings"
-        android:background="?attr/selectableItemBackground">
+        >
 
         <TextView
             android:id="@+id/menuPoint1View"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="monospace"
             android:padding="8dp"
-            android:layout_marginStart="16dp"
             android:text="@string/resultPanelSettingsText"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            tools:layout_editor_absoluteX="0dp" />
+            android:textColor="@color/blackhalf"
+            android:textSize="24sp"
+            tools:layout_editor_absoluteX="0dp"
+            android:background="@drawable/my_custom_background"/>
 
         <TextView
             android:id="@+id/resultPanelSettingsDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_marginStart="16dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:text="@string/resultPanelSettingsEnum"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            tools:layout_editor_absoluteX="0dp" />
-
-
+            android:textColor="@color/grayred"
+            android:textSize="24sp"
+            tools:layout_editor_absoluteX="0dp"
+            android:background="@drawable/my_custom_background"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/formatResultContainer"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="24sp"
+        android:layout_marginTop="32sp"
         android:layout_width="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resultPanelSettingsContainer"
@@ -83,22 +91,27 @@
             android:id="@+id/formatResultViewName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+
+            android:background="@drawable/my_custom_background"
             android:padding="8dp"
-            android:layout_marginStart="16dp"
+
             android:text="@string/formatResultViewName"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textColor="@color/blackhalf"
+            android:textSize="24sp"
             tools:layout_editor_absoluteX="0dp" />
 
         <TextView
             android:id="@+id/formatResultViewDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_marginStart="16dp"
+
+            android:background="@drawable/my_custom_background"
+            android:paddingLeft="8dp"
+
             android:text="@string/formatResultViewDescription"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textColor="@color/grayred"
+            android:textSize="24sp"
             tools:layout_editor_absoluteX="0dp" />
     </LinearLayout>
 
@@ -106,8 +119,10 @@
         android:id="@+id/vibrationForceContainer"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="24sp"
+        android:layout_marginTop="32sp"
         android:layout_width="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/formatResultContainer"
@@ -117,22 +132,22 @@
             android:id="@+id/vibrationForceViewName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/my_custom_background"
             android:padding="8dp"
-            android:layout_marginStart="16dp"
             android:text="@string/vibrationForceViewName"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textColor="@color/blackhalf"
+            android:textSize="24sp"
             tools:layout_editor_absoluteX="0dp" />
 
         <TextView
             android:id="@+id/vibrationForceViewDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_marginStart="16dp"
+            android:background="@drawable/my_custom_background"
+            android:paddingLeft="8dp"
             android:text="@string/vibrationForceViewDescription"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textColor="@color/grayred"
+            android:textSize="24sp"
             tools:layout_editor_absoluteX="0dp" />
     </LinearLayout>
 
